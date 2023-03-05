@@ -1,39 +1,23 @@
-import Categories from "./components/categories/categories";
+import { Routes, Route } from "react-router-dom";
+import Home from "./routes/home/home";
+import Navigation from "./routes/navigation/navigation";
+import SingIn from "./routes/sing-in/sing-in";
 
-function App() {
-
-  const categories = [
-    {
-      id: 1,
-      title: "Hats",
-      imageUrl: "images/hat.PNG"
-    },
-    {
-      id: 2,
-      title: "Shirts",
-      imageUrl: "images/shirts.PNG"
-    },
-    {
-      id: 3,
-      title: "Shoes",
-      imageUrl: "images/shoes.PNG"
-    },
-    {
-      id: 4,
-      title: "Womens",
-      imageUrl: "images/men.PNG"
-    },
-    {
-      id: 5,
-      title: "Mens",
-      imageUrl: "images/women.PNG"
-    },
-  ]
-
-  return (
-    <Categories categories={categories}/>
-  );
-  
+function Shop() {
+  return <h1>Shop</h1>
 }
 
-export default App;
+export default function App() {
+
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path="shop" element={<Shop />} />
+        <Route path="sing-in" element={<SingIn />} />
+      </Route>
+    </Routes>
+  )
+
+}
+
