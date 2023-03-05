@@ -1,4 +1,4 @@
-import {  } from "../../utils/firebase/firebase.js";
+import { signInWithGooglePopup } from "../../utils/firebase/firebase.js";
 
 export default function SingIn() {
   return (
