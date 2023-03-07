@@ -1,11 +1,17 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { 
-  getFirestore, 
+import {
+  getAuth,
+  signInWithRedirect,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword
+} from "firebase/auth";
+import {
+  getFirestore,
   doc, // this method allows to retrieve documents inside firestore database.
   getDoc, // getting the documents data.
   setDoc  // setting the documents data.
-} from  "firebase/firestore";
+} from "firebase/firestore";
 
 // DDK web app's Firebase configuration
 const firebaseConfig = {
@@ -22,39 +28,44 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Create an instance of the Google provider object.
 // https://firebase.google.com/docs/auth/web/google-signin?hl=en&authuser=0
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: "select_account"
 });
 
-// Initialize Firebase Authentication and get a reference to the service (line 31).
+// Initialize Firebase Authentication.
 export const auth = getAuth()
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 //Instantiate a db.
 export const db = getFirestore();
 
+
 //in order to use a db.
-export const createUserDocumentFromAuth = async (userAuth) => {
-  
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInfo = {}
+) => {
+  if (!userAuth) return; //if we don't get user auth we want to exit our code.
+
   const userDocRef = doc(db, 'users', userAuth.uid);
-  console.log(userDocRef);
 
   const userSnapshot = await getDoc(userDocRef); // Snapshot is kind of like a data. Also a special type of object like reference. 
-  console.log(userSnapshot);
-  console.log(userSnapshot.exists());
 
   // if user data doesn't exists
   // create  / set the document with the data from userAuth in my collection.
   if (!userSnapshot.exists()) {
-    const { displayName, email} = userAuth; // Destructuring. Also comming from console.log responce in sing-in.jsx
+    const { displayName, email } = userAuth; // Destructuring. Also comming from console.log responce in sing-in.jsx
     const createdAt = new Date();
 
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
-        createdAt
+        createdAt,
+        ...additionalInfo
       });
     } catch (error) {
       console.log(error.message);
@@ -62,14 +73,19 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
 
   //if user data exists
-  //return userDocRef
-  return userDocRef; 
+  return userDocRef;
 };
 
-// line 39 comment.
+// line 50 comment.
 // first we need to see if there is exiting document reference.
 // reference beeing a special type of object that firestore use when talking about actual instance of a document.
 // doc takes 3 arguments(1-database, 2 - collections, 3 - identifier(in this case users uid comming from console.log responce in sing-in.jsx)).
 
 // docs about setting data (+ difference between setDoc and addDoc)
 // https://firebase.google.com/docs/firestore/manage-data/add-data
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await createUserWithEmailAndPassword(auth, email, password);
+};

@@ -1,5 +1,9 @@
-import { signInWithGooglePopup } from "../../utils/firebase/firebase.js";
-import { createUserDocumentFromAuth } from "../../utils/firebase/firebase.js";
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth
+} from "../../utils/firebase/firebase.js";
+
+import SingUpForm from "../../components/sing-up-form/sing-up-form.jsx";
 
 export default function SingIn() {
 
@@ -14,6 +18,7 @@ export default function SingIn() {
       <button onClick={logGoogleUser}>
         Sign In With Google Popup
       </button>
+      <SingUpForm />
     </div>
   )
 }
