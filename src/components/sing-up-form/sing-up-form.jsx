@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase";
 import FormInput from "../form-input/form-input";
+import Button from "../button/button";
 import "./sing-up-form.scss";
 
 const defaultFormFields = {
@@ -50,10 +51,10 @@ export default function SingUpForm() {
   };
 
   return (
-    <div className="sing-up-container">
+    <div className="sing-up-container ">
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit} autocomplete="off">
+      <form onSubmit={handleSubmit} autoComplete="off">
         <FormInput
           label="Display Name"
           type="text"
@@ -89,7 +90,7 @@ export default function SingUpForm() {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <button type="submit">Sing Up</button>
+        <Button type="submit">Sing Up</Button>
       </form>
     </div>
   )
