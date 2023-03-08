@@ -14,7 +14,7 @@ export default function Navigation() {
           <Link className="nav-link" to="/shop">
             Shop
           </Link>
-          <Link className="nav-link" to="/sing-in">
+          <Link className="nav-link" to="/auth">
             Sing In
           </Link>
         </div>

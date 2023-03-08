@@ -56,7 +56,7 @@ export default function SingUpForm() {
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit} autoComplete="off">
         <FormInput
-          label="Display Name"
+          label="Username"
           type="text"
           required
           onChange={handleChange}

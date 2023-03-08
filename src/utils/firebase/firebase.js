@@ -1,10 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from "firebase/auth";
 import {
   getFirestore,
@@ -37,7 +37,6 @@ googleProvider.setCustomParameters({
 export const auth = getAuth()
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 //Instantiate a db.
 export const db = getFirestore();
@@ -46,7 +45,7 @@ export const db = getFirestore();
 //in order to use a db.
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInfo = {}
+  additionalInfo = {} 
 ) => {
   if (!userAuth) return; //if we don't get user auth we want to exit our code.
 
@@ -88,4 +87,11 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+//Sing In
+export const singInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword(auth, email, password);
 };
