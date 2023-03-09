@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase";
 import FormInput from "../form-input/form-input";
 import Button from "../button/button";
+import { UserContext } from "../../contexts/user.context";
 import "./sing-up-form.scss";
 
 const defaultFormFields = {
@@ -16,7 +17,7 @@ export default function SingUpForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  // console.log(formFields);
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -32,9 +33,10 @@ export default function SingUpForm() {
 
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password); //user from destructuring console.loged response.
+      setCurrentUser(user);
+      
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
-
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert('Can not create user, email already in use.')
@@ -54,7 +56,7 @@ export default function SingUpForm() {
     <div className="sing-up-container ">
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} >
         <FormInput
           label="Username"
           type="text"

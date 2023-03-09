@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import FormInput from "../form-input/form-input";
+import Button from "../button/button";
+import { UserContext } from "../../contexts/user.context";
 import {
   createUserDocumentFromAuth,
   signInWithGooglePopup,
   singInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase";
-import FormInput from "../form-input/form-input";
-import Button from "../button/button";
 import "./sing-in-form.scss";
 
 const defaultFormFields = {
@@ -18,7 +19,7 @@ export default function SingInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  // console.log(formFields);
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -26,6 +27,7 @@ export default function SingInForm() {
 
   const singInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();  //user comming from destructuring a responce.
+    setCurrentUser(user);
     await createUserDocumentFromAuth(user);
   }
 
@@ -33,8 +35,8 @@ export default function SingInForm() {
     event.preventDefault();
 
     try {
-      const response = await singInAuthUserWithEmailAndPassword(email, password);
-      console.log(response);
+      const { user } = await singInAuthUserWithEmailAndPassword(email, password);
+      setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch(error.code) {
