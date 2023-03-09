@@ -103,3 +103,4 @@ export const signOutUser = async () => await signOut(auth);
 
 //To use an observable listener
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+

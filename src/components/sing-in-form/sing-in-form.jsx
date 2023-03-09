@@ -19,16 +19,15 @@ export default function SingInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
+  // const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   }
 
   const singInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();  //user comming from destructuring a responce.
-    setCurrentUser(user);
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();  //user comming from destructuring a responce.
+    // setCurrentUser(user);
   }
 
   const handleSubmit = async (event) => {
@@ -36,7 +35,7 @@ export default function SingInForm() {
 
     try {
       const { user } = await singInAuthUserWithEmailAndPassword(email, password);
-      setCurrentUser(user);
+      // setCurrentUser(user);
       resetFormFields();
     } catch (error) {
       switch(error.code) {

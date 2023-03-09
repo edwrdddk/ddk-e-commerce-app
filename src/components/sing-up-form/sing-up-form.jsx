@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase";
 import FormInput from "../form-input/form-input";
 import Button from "../button/button";
-import { UserContext } from "../../contexts/user.context";
 import "./sing-up-form.scss";
 
 const defaultFormFields = {
@@ -16,8 +15,6 @@ export default function SingUpForm() {
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
-  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -33,7 +30,6 @@ export default function SingUpForm() {
 
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password); //user from destructuring console.loged response.
-      setCurrentUser(user);
       
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
