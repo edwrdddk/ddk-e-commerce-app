@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Top Hat",
+    "imageUrl": "https://i.ibb.co/4T0Gm7m/IMG-7271.jpg",
+    "price": "25$"
+  },
+  {
+    "id": 2,
+    "name": "Graduate Cap",
+    "imageUrl": "https://i.ibb.co/vmS4GsP/IMG-7272.jpg",
+    "price": "18$"
+  },
+  {
+    "id": 3,
+    "name": "Military Helmet",
+    "imageUrl": "https://i.ibb.co/hFf4Xr9/IMG-7275.jpg",
+    "price": "35$"
+  },
+  {
+    "id": 4,
+    "name": "Blue Cap",
+    "imageUrl": "https://i.ibb.co/xG9xSb4/IMG-7273.jpg",
+    "price": "25$"
+  },
+  {
+    "id": 5,
+    "name": "Crown",
+    "imageUrl": "https://i.ibb.co/5WwqV5Y/IMG-7276.jpg",
+    "price": "18$"
+  },
+  {
+    "id": 6,
+    "name": "Beach Hat",
+    "imageUrl": "https://i.ibb.co/XpYk5Mk/IMG-7277.jpg",
+    "price": "14$"
+  },
+  {
+    "id": 7,
+    "name": "Magic Hat",
+    "imageUrl": "https://i.ibb.co/tJPQ1pY/IMG-7278.jpg",
+    "price": "18$"
+  },
+  {
+    "id": 8,
+    "name": "Farmer's Hat",
+    "imageUrl": "https://i.ibb.co/s3XgLgC/IMG-7279.jpg",
+    "price": "14$"
+  },
+  {
+    "id": 9,
+    "name": "Artist's hat",
+    "imageUrl": "https://i.ibb.co/MZzvVCt/IMG-7280.jpg",
+    "price": "16$"
+  }
+]
