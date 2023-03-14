@@ -12,7 +12,9 @@ import {
   getFirestore,
   doc, // this method allows to retrieve documents inside firestore database.
   getDoc, // getting the documents data.
-  setDoc  // setting the documents data.
+  setDoc,  // setting the documents data.
+  collection, 
+  writeBatch
 } from "firebase/firestore";
 
 // DDK web app's Firebase configuration
@@ -43,6 +45,19 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 //Instantiate a db.
 export const db = getFirestore();
 
+//data => firestore db
+export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object); //set this location(docRef) with the value(object)
+  });
+
+  await batch.commit();
+  console.log("done");
+}
 
 //in order to use a db.
 export const createUserDocumentFromAuth = async (
@@ -77,7 +92,7 @@ export const createUserDocumentFromAuth = async (
   return userDocRef;
 };
 
-// line 50 comment.
+// userDocRef comment. 
 // first we need to see if there is exiting document reference.
 // reference beeing a special type of object that firestore use when talking about actual instance of a document.
 // doc takes 3 arguments(1-database, 2 - collections, 3 - identifier(in this case users uid comming from console.log responce in sing-in.jsx)).

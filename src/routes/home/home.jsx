@@ -10,8 +10,8 @@ export default function Home() {
     },
     {
       id: 2,
-      title: "Shirts",
-      imageUrl: process.env.PUBLIC_URL + "/images/home-img/shirts.PNG"
+      title: "Coats",
+      imageUrl: process.env.PUBLIC_URL + "/images/home-img/coats.PNG"
     },
     {
       id: 3,
