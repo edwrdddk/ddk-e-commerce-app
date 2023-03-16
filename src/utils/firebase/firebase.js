@@ -6,7 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -14,7 +14,9 @@ import {
   getDoc, // getting the documents data.
   setDoc,  // setting the documents data.
   collection, 
-  writeBatch
+  writeBatch,
+  query,
+  getDocs
 } from "firebase/firestore";
 
 // DDK web app's Firebase configuration
@@ -45,7 +47,7 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 //Instantiate a db.
 export const db = getFirestore();
 
-//data => firestore db
+//data => firestore db.
 export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -57,6 +59,21 @@ export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) =>
 
   await batch.commit();
   console.log("done");
+}
+
+//get products & categories from firestore db.
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const {title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
 }
 
 //in order to use a db.

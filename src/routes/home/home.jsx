@@ -1,4 +1,4 @@
-import Categories from "../../components/categories/categories";
+import Directory from "../../components/directory/directory";
 
 export default function Home() {
 
@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div>
-      <Categories categories={categories}/>
+      <Directory categories={categories}/>
     </div>
   );
 
