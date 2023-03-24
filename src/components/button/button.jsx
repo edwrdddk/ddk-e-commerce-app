@@ -1,4 +1,4 @@
-import "./button.scss";
+import { BaseButton, GoogleSingInButton, InvertedButton} from "./button.styles";
 
 const BUTTON_TYPE_CLASSES = {
   google: 'google-sign-in',
@@ -12,10 +12,3 @@ export default function Button({ children, buttonType, ...otherProps }) {
     </button>
   )
 }
-
-/*
-3 types of button in the app.
-- default 
-- inverted
-- google sing in
-*/
