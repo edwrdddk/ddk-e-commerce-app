@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import FormInput from "../form-input/form-input";
-import Button from "../button/button";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
 import { UserContext } from "../../contexts/user.context";
 import {
   createUserDocumentFromAuth,
@@ -38,12 +38,12 @@ export default function SingInForm() {
       // setCurrentUser(user);
       resetFormFields();
     } catch (error) {
-      switch(error.code) {
+      switch (error.code) {
         case "auth/wrong-password":
-          alert ("Wrong password.");
+          alert("Wrong password.");
           break
         case "auth/user-not-found":
-          alert ("User not found.");
+          alert("User not found.");
           break
         default:
           console.log(error);
@@ -67,7 +67,7 @@ export default function SingInForm() {
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit} >
-      {/* autoComplete="off" */}
+        {/* autoComplete="off" */}
         <FormInput
           label="Email"
           type="email"
@@ -87,7 +87,7 @@ export default function SingInForm() {
         />
         <div className="buttons-container">
           <Button type="submit">Sing In</Button>
-          <Button type="button" buttonType="google" onClick={singInWithGoogle}>Google Sign In</Button>
+          <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={singInWithGoogle}>Google Sign In</Button>
         </div>
       </form>
     </div>

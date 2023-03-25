@@ -1,4 +1,4 @@
-import "./form-input.scss";
+import "./form-input.styled.jsx";
 
 export default function FormInput({ label, ...otherProps }) {
   return (
