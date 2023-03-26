@@ -7,7 +7,7 @@ import {
   signInWithGooglePopup,
   singInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase";
-import "./sing-in-form.scss";
+import { SignInContainer, ButtonsContainer } from './sing-in-form.styles';
 
 const defaultFormFields = {
   email: '',
@@ -63,7 +63,7 @@ export default function SingInForm() {
   };
 
   return (
-    <div className="sing-in-container ">
+    <SignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit} >
@@ -85,11 +85,11 @@ export default function SingInForm() {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Sing In</Button>
           <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={singInWithGoogle}>Google Sign In</Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   )
 }
