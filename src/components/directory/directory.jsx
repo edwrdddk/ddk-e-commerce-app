@@ -24,13 +24,13 @@ const categories = [
   {
     id: 4,
     title: "Womens",
-    imageUrl: process.env.PUBLIC_URL + "/images/home-img/men.PNG",
+    imageUrl: process.env.PUBLIC_URL + "/images/home-img/women.PNG",
     route: "shop/womens"
   },
   {
     id: 5,
     title: "Mens",
-    imageUrl: process.env.PUBLIC_URL + "/images/home-img/women.PNG",
+    imageUrl: process.env.PUBLIC_URL + "/images/home-img/men.PNG",
     route: "shop/mens"
   },
 ]
