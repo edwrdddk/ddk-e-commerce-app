@@ -13,7 +13,7 @@ import {
   doc, // this method allows to retrieve documents inside firestore database.
   getDoc, // getting the documents data.
   setDoc,  // setting the documents data.
-  collection, 
+  collection,
   writeBatch,
   query,
   getDocs
@@ -67,19 +67,21 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const {title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 
-  return categoryMap;
+  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+  //   const {title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
+
+  // return categoryMap;
 }
 
 //in order to use a db.
 export const createUserDocumentFromAuth = async (
   userAuth,
-  additionalInfo = {} 
+  additionalInfo = {}
 ) => {
   if (!userAuth) return; //if we don't get user auth we want to exit our code.
 
