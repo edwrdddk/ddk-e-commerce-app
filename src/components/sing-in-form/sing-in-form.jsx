@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
+import { useDispatch  } from "react-redux";
 import FormInput from "../form-input/form-input";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
 // import { UserContext } from "../../contexts/user.context";
-import {
-  createUserDocumentFromAuth,
-  signInWithGooglePopup,
-  singInAuthUserWithEmailAndPassword
-} from "../../utils/firebase/firebase";
+// import {
+//   createUserDocumentFromAuth,
+//   signInWithGooglePopup,
+//   singInAuthUserWithEmailAndPassword
+// } from "../../utils/firebase/firebase";
 import { SignInContainer, ButtonsContainer } from './sing-in-form.styles';
+import { googleSingInStart, emailSingInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: '',
@@ -15,7 +17,7 @@ const defaultFormFields = {
 }
 
 export default function SingInForm() {
-
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
@@ -26,15 +28,17 @@ export default function SingInForm() {
   }
 
   const singInWithGoogle = async () => {
-    await signInWithGooglePopup();  //user comming from destructuring a responce.
-    // setCurrentUser(user);
+    dispatch(googleSingInStart());
+    // await signInWithGooglePopup();  //user comming from destructuring a responce.
+    // // setCurrentUser(user);
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { user } = await singInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSingInStart(email, password));
+      // const { user } = await singInAuthUserWithEmailAndPassword(email, password);
       // setCurrentUser(user);
       resetFormFields();
     } catch (error) {
