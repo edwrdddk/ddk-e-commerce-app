@@ -12,6 +12,7 @@ export default function PaymentForm() {
     if (!stripe || !elements) {
       return;  //exit
     }
+
   }
 
   return (
