@@ -3,7 +3,7 @@ import { getCategoriesAndDocuments } from '../../utils/firebase/firebase';
 import { fetchCategoriesSuccess, fetchCategoriesFailed } from './category.action';
 import { CATEGORIES_ACTION_TYPES } from './category.types';
 
-//remaking a func from category.action
+//remaking a func from category.action 
 export function* fetchCategoriesAsync() {
   try {
     const categoriesArray = yield call(getCategoriesAndDocuments, 'categories');

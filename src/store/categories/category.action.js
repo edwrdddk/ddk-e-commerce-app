@@ -21,5 +21,5 @@ export const fetchCategoriesFailed = (error) =>
 //     dispatch(fetchCategoriesSuccess(categoriesArray));
 //   } catch (error) {
 //     dispatch(fetchCategoriesFailed(error));
-//   }
+//   } 
 // }
