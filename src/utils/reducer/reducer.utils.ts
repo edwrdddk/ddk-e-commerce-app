@@ -1,19 +1,11 @@
 import { AnyAction } from "redux";
 
-type Human = {
-  name: string;
+type Matchable<AC extends () => AnyAction> = AC & {
+  type: ReturnType<AC>['type'];
+  match(action: AnyAction): action is ReturnType<AC>;
 }
 
-type Alien = {
-  fly: () => void;
-}
 
-type Hybrid = Human & Alien;
-
-const Finn: Hybrid = {
-  name: 'Finn',
-  fly: () => {}
-}
 
 export type ActionWithPayload<T, P> = {
   type: T;
