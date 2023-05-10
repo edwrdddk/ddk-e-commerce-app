@@ -1,5 +1,3 @@
-// TS
-
 export enum CATEGORIES_ACTION_TYPES  {
   FETCH_CATEGORIES_START = 'category/FETCH_CATEGORIES_START',
   FETCH_CATEGORIES_SUCCESS = 'category/FETCH_CATEGORIES_SUCCESS',
@@ -14,11 +12,15 @@ export type CategoryItem = {
 }
 
 export type Category = {
-  titile: string ;
+  title: string ;
   imageUrl: string;
   items: CategoryItem[];
 }
 
+export type CategoryMap = {
+  [key: string]: CategoryItem[]// key is based of a title, so we dont know what it is going to be, that is  y we write key as [key: string]
+}
+ 
 
 // JS 
 
