@@ -51,9 +51,10 @@ export default function SingInForm() {
       //     break
       //   default:
       //     console.log(error);
+      // }
       console.log("User sing in failed", error);
       
-      }
+      
       // if (error.code === "auth/wrong-password" || "auth/user-not-found") {
       //   alert ("Wrong email or password.")
       // } else {
