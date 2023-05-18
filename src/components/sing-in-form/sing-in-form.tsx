@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import FormInput from "../form-input/form-input";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button";
@@ -33,7 +33,7 @@ export default function SingInForm() {
     // // setCurrentUser(user);
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -42,15 +42,17 @@ export default function SingInForm() {
       // setCurrentUser(user);
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Wrong password.");
-          break
-        case "auth/user-not-found":
-          alert("User not found.");
-          break
-        default:
-          console.log(error);
+      // switch (error.code) {
+      //   case "auth/wrong-password":
+      //     alert("Wrong password.");
+      //     break
+      //   case "auth/user-not-found":
+      //     alert("User not found.");
+      //     break
+      //   default:
+      //     console.log(error);
+      console.log("User sing in failed", error);
+      
       }
       // if (error.code === "auth/wrong-password" || "auth/user-not-found") {
       //   alert ("Wrong email or password.")
@@ -60,7 +62,7 @@ export default function SingInForm() {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value }) //whenever you have to use a variable's value as a key in Object, you have to use it in [].

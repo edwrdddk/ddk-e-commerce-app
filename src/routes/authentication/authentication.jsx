@@ -1,5 +1,5 @@
-import SingUpForm from "../../components/sing-up-form/sing-up-form.jsx";
-import SingInForm from "../../components/sing-in-form/sing-in-form.jsx";
+import SingUpForm from "../../components/sing-up-form/sing-up-form.tsx";
+import SingInForm from "../../components/sing-in-form/sing-in-form.tsx";
 import "./authentication.scss";
 
 export default function Authentication() {
