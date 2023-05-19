@@ -1,7 +1,13 @@
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BackgroundImage, Body, DirectoryItemContainer } from './directory-item.styles'
+import { BackgroundImage, Body, DirectoryItemContainer } from './directory-item.styles';
+import { DirectoryCategory } from '../directory/directory';
 
-export default function DirectoryItem({ category }) {  //destucturing props
+type DirectoryItemProps = {
+  category: DirectoryCategory;
+} 
+
+const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {  //destucturing props
   const { imageUrl, title, route } = category;
   const navigate = useNavigate();
 
@@ -20,5 +26,9 @@ export default function DirectoryItem({ category }) {  //destucturing props
     </DirectoryItemContainer>
   )
 }
+
+export default DirectoryItem;
+
+
 
 

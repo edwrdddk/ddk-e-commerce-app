@@ -1,5 +1,6 @@
 // import { useContext } from "react";
 // import { CartContext } from "../../contexts/cart.context";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart } from "../../store/cart/cart.action";
@@ -11,8 +12,13 @@ import {
   Name,
   Price,
 } from './product-card.styles';
+import { CategoryItem } from "../../store/categories/category.types";
 
-export default function ProductCard({ product }) {
+type ProductCardProps = {
+  product: CategoryItem;
+}
+
+const ProductCard: FC<ProductCardProps> = ({ product }) =>  {
   const { name, imageUrl, price } = product;
   // const { addItemToCart } = useContext(CartContext);
   const dispatch = useDispatch();
@@ -36,3 +42,5 @@ export default function ProductCard({ product }) {
     </ProductCartContainer>
   )
 }
+
+export default ProductCard;
