@@ -11,8 +11,7 @@ import App from './App';
 // import { CartProvider } from './contexts/cart.context';
 import { store, persistor } from './store/store';
 import { stripePromise } from './utils/stripe/stripe.utils';
-import './index.scss';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 
 
@@ -37,3 +36,4 @@ root.render(
   </React.StrictMode>
 );
 
+serviceWorkerRegistration.register();
