@@ -9,6 +9,12 @@ export const NavigationContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 15px;
   // margin-top: 5px;
+
+  @media screen and (max-width: 800px) {
+    height: 60px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+  }
 `
 
 export const LogoContainer = styled(Link)`
@@ -16,6 +22,12 @@ export const LogoContainer = styled(Link)`
   width: 70px;
   padding: 25px;
   position: relative;
+
+  @media screen and (max-width: 800px) {
+    height: 50px;
+    padding: 0px;
+    margin-left: 2px;
+  }
 `
 
 export const Logo = styled(ShopLogo)`
@@ -35,6 +47,10 @@ export const NavLinks = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 4px;
+
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 `
 
 export const NavLink  = styled(Link)`
